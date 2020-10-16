@@ -7,3 +7,22 @@ You can now view frontend in the browser.
 
 Note that the development build is not optimized.
 To create a production build, use yarn build.
+
+
+to get the front end to see the backend local host added a proxy statement to 
+the front end package.json file.  in this case:
+
+"proxy": "http://127.0.0.1:5000",
+
+in HomeScreen.js :
+
+const HomeScreen = () => {
+  //next statement uses the use state: [var, fuctionName] = useState(initial state)
+  const [products, setProducts] = useState([])
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await axios.get('/api/products')
+      setProducts(data)
+    }
+    fetchProducts()
+  }, [])         <==== in brackets are depenencies (will fire off the useEffect function. In this case it runs immediately because fetchProducts() is called when component loads.  useEffect is used for functional components.  Class components would use the constructor function instead)
