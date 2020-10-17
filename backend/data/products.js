@@ -77,6 +77,19 @@ const products = [
     rating: 3,
     numReviews: 12,
   },
+  {
+    _id: '7',
+    name: 'Lucy Ann Benke Dog Extrodinaire',
+    image: '/images/lucy2.jpg',
+    description:
+      'Farily smart dog who likes to eat bones and likes to bark at other dogs in the back yard. Very good natured with people she knows. Good watch dog who will pee on strangers.',
+    brand: 'Mutt',
+    category: 'Pet Friend',
+    price: 500.53,
+    countInStock: 1,
+    rating: 4.5,
+    numReviews: 6,
+  },
 ]
 // module.exports = products
 export default products
