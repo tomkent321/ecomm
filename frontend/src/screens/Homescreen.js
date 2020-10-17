@@ -11,6 +11,7 @@ const HomeScreen = () => {
   const [products, setProducts] = useState([])
   useEffect(() => {
     const fetchProducts = async () => {
+      //note proxy in frontend package.json to see the backend host 5000
       const { data } = await axios.get('/api/products')
       setProducts(data)
     }
