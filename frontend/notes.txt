@@ -26,3 +26,35 @@ const HomeScreen = () => {
     }
     fetchProducts()
   }, [])         <==== in brackets are depenencies (will fire off the useEffect function. In this case it runs immediately because fetchProducts() is called when component loads.  useEffect is used for functional components.  Class components would use the constructor function instead)
+
+
+
+
+//example of middleware:   (would show original url calling)
+app.use((req,res, next)=> {
+  console.log(req.originalUrl)
+  next()
+})
+
+response after making a request:
+
+/api/products/5f8bdd24b313b53997c21398
+
+
+npm:    express-async-handler
+Simple middleware for handling exceptions inside of async express routes and passing them to your express error handlers.
+
+
+Docs on Redux:
+https://redux.js.org/understanding/thinking-in-redux/glossary
+
+
+dependencies in the FRONTEND to install Redux:
+
+npm i redux react-redux redux-thunk  redux-devtools-extension
+
+steps:  
+
+1. create redux store
+    in src folder
+    file:  store.js
