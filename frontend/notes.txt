@@ -58,3 +58,12 @@ steps:
 1. create redux store
     in src folder
     file:  store.js
+
+
+
+Adding new actions to Redux store
+
+1. add new constants to actions/actionTypes.js
+2. add a new reducer function the the appropriate reducer file
+3. add the new reducer to the store.js file
+4. add the action to the appropriate actions.js file
