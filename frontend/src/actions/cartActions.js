@@ -20,5 +20,5 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
   })
 //get state returns js object, must be stringified to use it in local storage, will use JSON.parse to get info out of local storage and back into js
 
-  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems)
+  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 } 
