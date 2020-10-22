@@ -5,6 +5,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
 
 import productRoutes from './routes/productRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 
 dotenv.config()
 //Then use .env files to store sensitive data
@@ -12,6 +13,9 @@ dotenv.config()
 connectDB()
 
 const app = express()
+
+//allows use of body parsing in app
+app.use(express.json())
 
 //see example of middleware in notes
 
@@ -22,6 +26,7 @@ app.get('/', (req, res) => {
 //this 'mounts' this route into app to the correct router
 
 app.use('/api/products', productRoutes)
+app.use('/api/users', userRoutes)
 
 app.use(notFound)
 
