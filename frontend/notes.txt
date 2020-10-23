@@ -67,3 +67,21 @@ Adding new actions to Redux store
 2. add a new reducer function the the appropriate reducer file
 3. add the new reducer to the store.js file
 4. add the action to the appropriate actions.js file
+
+
+
+
+note: in adding new users the hash of the password is done through middleware in
+the mongoose model:
+
+
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
+    next()
+  }
+
+  const salt = await bcrypt.genSalt(10)
+  this.password = await bcrypt.hash(this.password, salt)
+})
+
+the hash takes place before a new user is saved (the 'pre')
