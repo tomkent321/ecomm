@@ -23,7 +23,7 @@ const ProductScreen = ({ history, match }) => {
     history.push(`/cart/${match.params.id}?qty=${qty}`)
   }
   // console.log('history',history)
-  // console.log('match.params.id', match.params.id) 
+  // console.log('match.params.id', match.params.id)
   return (
     <>
       <Link className='btn btn-light my-3' to='/'>
@@ -35,10 +35,10 @@ const ProductScreen = ({ history, match }) => {
         <Message variant='danger'>{error} </Message>
       ) : (
         <Row>
-          <Col md={6}>
-            <Image src={product.image} alt={product.name} fluid></Image>
+          <Col md={12}>
+            <Image src={product.image} alt={product.name} fluid className='my-3'></Image>
           </Col>
-          <Col md={3}>
+          <Col md={6}>
             <ListGroup variant='flush'>
               <ListGroup.Item>
                 <h3>{product.name}</h3>
@@ -50,7 +50,7 @@ const ProductScreen = ({ history, match }) => {
               <ListGroup.Item>{product.description}</ListGroup.Item>
             </ListGroup>
           </Col>
-          <Col md={3}>
+          <Col md={6}>
             <Card>
               <ListGroup variant='flush'>
                 <ListGroup.Item>
