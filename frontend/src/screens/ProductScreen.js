@@ -38,25 +38,65 @@ const ProductScreen = ({ history, match }) => {
           <Col md={12}>
             <Image src={product.image} alt={product.name} fluid className='my-3'></Image>
           </Col>
-          <Col md={6}>
-            <ListGroup variant='flush'>
+          <Col md={12}>
+            <Card className='my-3 p-3 text-center rounded'>
+              <Card.Body>
+                <Link to={`/product/${product._id}`}>
+                  <Card.Title as='div'>
+                    <strong>
+                      <h2>{product.name}</h2>
+                    </strong>
+                  </Card.Title>
+                </Link>
+                <Card.Subtitle className='mb-2 text-muted'>
+                  <h6>{product.medium}</h6>
+                </Card.Subtitle>
+
+                <Card.Text as='h6' className='py-2'>
+                  {product.height} x {product.width}"
+                </Card.Text>
+
+                <Card.Text as='h6' className='py-1'>
+                  {product.year}
+                </Card.Text>
+                <Col md={4}>
+                  <Row>
+                    <h4>Location: {product.location}</h4>
+                  </Row>
+                  <Row>
+                    <h4>Status: {product.status}</h4>
+                  </Row>
+                  <Row>
+                    <h4>Framed: {product.framed}</h4>
+                  </Row>
+                </Col>
+                <Col md={5}>
+                  <Row>Artist comments: {product.artist_comments}</Row>
+                </Col>
+                {/* <Card.Text as='h6' className='py-2'>
+                  {`Location: ${product.location} Status: ${product.status}  Framed: ${product.framed}`}
+                </Card.Text> */}
+              </Card.Body>
+            </Card>
+
+            {/* <ListGroup variant='flush'>
               <ListGroup.Item>
                 <h3>{product.name}</h3>
               </ListGroup.Item>
               <ListGroup.Item>
-                <h6  className="artComments">
+                <h6 className='artComments'>
                   <span>
                     <strong>Artist's comments:</strong>
                   </span>
-                  "{product.artist_comments}"
+                  {product.artist_comments}
                 </h6>
-                {/* <Rating value={product.rating} text={`${product.numReviews} reviews`}></Rating> */}
+                <Rating value={product.rating} text={`${product.numReviews} reviews`}></Rating>
               </ListGroup.Item>
               <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
               <ListGroup.Item>{product.description}</ListGroup.Item>
-            </ListGroup>
+            </ListGroup> */}
           </Col>
-          <Col md={6}>
+          {/* <Col md={6}>
             <Card>
               <ListGroup variant='flush'>
                 <ListGroup.Item>
@@ -107,7 +147,7 @@ const ProductScreen = ({ history, match }) => {
                 </ListGroup.Item>
               </ListGroup>
             </Card>
-          </Col>
+          </Col> */}
         </Row>
       )}
     </>
