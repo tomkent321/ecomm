@@ -1,11 +1,11 @@
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import colors from 'colors'
-import users from './data/users.js'
+// import users from './data/users.js'
 import products from './data/products.js'
-import User from './models/userModel.js'
+// import User from './models/userModel.js'
 import Product from './models/productModel.js'
-import Order from './models/orderModel.js'
+// import Order from './models/orderModel.js'
 import connectDB from './config/db.js'
 
 // called with:
@@ -19,17 +19,18 @@ connectDB()
 
 const importData = async () => {
   try {
-    await Order.deleteMany()
-    await User.deleteMany()
+    // await Order.deleteMany()
+    // await User.deleteMany()
     await Product.deleteMany()
 
-    const createUsers = await User.insertMany(users)
+    // const createUsers = await User.insertMany(users)
 
     //assigns id of the first user in the array as the admin
-    const adminUser = createUsers[0]._id
+    // const adminUser = createUsers[0]._id
 
     const sampleProducts = products.map((product) => {
-      return { ...product, user: adminUser }
+      // return { ...product, user: adminUser }
+      return { ...product }
     })
 
     await Product.insertMany(sampleProducts)
