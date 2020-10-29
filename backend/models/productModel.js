@@ -30,6 +30,26 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    medium: {
+      type: String,
+      required: true,
+    },
+    height: {
+      type: Number,
+      required: true,
+    },
+    width: {
+      type: Number,
+      required: true,
+    },
+    year: {
+      type: Number,
+      required: true,
+    },
+    artist_comments: {
+      type: String,
+      required: false,
+    },
     category: {
       type: String,
       required: true,

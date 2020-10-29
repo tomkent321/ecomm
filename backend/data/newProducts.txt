@@ -1,0 +1,40 @@
+rating
+: 5
+numReviews
+:
+6
+price
+:
+500
+countInStock
+:
+1
+name
+:
+"Deer Me"
+image
+:
+"/images/p1.jpg"
+description
+:
+"18 x 35" framed original oil painting"
+brand
+:
+"Donna Hurd Studio"
+medium
+:
+"Acrylic on Canvas"
+height
+:
+23.5
+width
+:
+18
+year
+:
+2005
+category
+:
+"Fine Art"
+user
+:
