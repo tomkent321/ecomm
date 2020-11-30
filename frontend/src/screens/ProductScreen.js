@@ -120,7 +120,7 @@ const ProductScreen = ({ history, match }) => {
                         </tr>
                         <tr>
                           <td></td>
-                          <td>Status</td>
+                          <td>Status:</td>
                           <td>{product.status}</td>
                         </tr>
                       </tbody>
