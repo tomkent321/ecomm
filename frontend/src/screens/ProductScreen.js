@@ -76,7 +76,7 @@ const ProductScreen = ({ history, match }) => {
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey='0'>
-                  <Card.Body>{product.artist_comments} </Card.Body>
+                  <Card.Body>"{product.artist_comments}" </Card.Body>
                 </Accordion.Collapse>
               </Card>
               <Card>

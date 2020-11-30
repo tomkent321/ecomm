@@ -85,3 +85,14 @@ userSchema.pre('save', async function (next) {
 })
 
 the hash takes place before a new user is saved (the 'pre')
+
+
+Need to review:
+
+Lecture on buidling the login HomeScreen:
+
+    * useEffect
+    * histor.push
+    * useState with []
+    * in const LoginScreen = ({ * location and * history args})
+    * const redirect = location.search ? location.search.split('=')[1] : '/'  review what's going on with the split

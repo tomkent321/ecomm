@@ -40,6 +40,7 @@ const productSchema = mongoose.Schema(
     artist_comments: {
       type: String,
       required: false,
+      default: 'No comments at this time.',
     },
 
     reviews: [reviewSchema],
