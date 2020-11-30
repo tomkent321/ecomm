@@ -1,7 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Row, Col, Image, ListGroup, Card, Button, ListGroupItem, Form } from 'react-bootstrap'
+import {
+  Row,
+  Col,
+  Image,
+  ListGroup,
+  Card,
+  Button,
+  ListGroupItem,
+  Form,
+  Nav,
+  Accordion,
+  Table,
+} from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Loader from '../components/Loader.js'
 import Message from '../components/Message.js'
@@ -36,118 +48,88 @@ const ProductScreen = ({ history, match }) => {
       ) : (
         <Row>
           <Col md={12}>
-            <Image src={product.image} alt={product.name} fluid className='my-3'></Image>
+            <Image
+              src={product.image}
+              alt={product.name}
+              fluid
+              className='my-3'
+            ></Image>
           </Col>
+          <Card border='light' className='text-center col-md-12'>
+            {/* <Card.Header>Featured</Card.Header> */}
+            <Card.Body>
+              <Card.Title className='paintTitle'>{product.name}</Card.Title>
+              <Card.Text className='medium'>{product.medium}</Card.Text>
+              <Card.Text className='otherInfo'>
+                {product.height} x {product.width}"
+              </Card.Text>
+              <Card.Text className='otherInfo'>{product.year}</Card.Text>
+            </Card.Body>
+            {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
+          </Card>
           <Col md={12}>
-            <Card className='my-3 p-3 text-center rounded'>
-              <Card.Body>
-                <Link to={`/product/${product._id}`}>
-                  <Card.Title as='div'>
-                    <strong>
-                      <h2>{product.name}</h2>
-                    </strong>
-                  </Card.Title>
-                </Link>
-                <Card.Subtitle className='mb-2 text-muted'>
-                  <h6>{product.medium}</h6>
-                </Card.Subtitle>
-
-                <Card.Text as='h6' className='py-2'>
-                  {product.height} x {product.width}"
-                </Card.Text>
-
-                <Card.Text as='h6' className='py-1'>
-                  {product.year}
-                </Card.Text>
-                <Col md={4}>
-                  <Row>
-                    <h4>Location: {product.location}</h4>
-                  </Row>
-                  <Row>
-                    <h4>Status: {product.status}</h4>
-                  </Row>
-                  <Row>
-                    <h4>Framed: {product.framed}</h4>
-                  </Row>
-                </Col>
-                <Col md={5}>
-                  <Row>Artist comments: {product.artist_comments}</Row>
-                </Col>
-                {/* <Card.Text as='h6' className='py-2'>
-                  {`Location: ${product.location} Status: ${product.status}  Framed: ${product.framed}`}
-                </Card.Text> */}
-              </Card.Body>
-            </Card>
-
-            {/* <ListGroup variant='flush'>
-              <ListGroup.Item>
-                <h3>{product.name}</h3>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <h6 className='artComments'>
-                  <span>
-                    <strong>Artist's comments:</strong>
-                  </span>
-                  {product.artist_comments}
-                </h6>
-                <Rating value={product.rating} text={`${product.numReviews} reviews`}></Rating>
-              </ListGroup.Item>
-              <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
-              <ListGroup.Item>{product.description}</ListGroup.Item>
-            </ListGroup> */}
+            <Accordion defaultActiveKey='0'>
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant='link' eventKey='0'>
+                    Artist's Comments
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey='0'>
+                  <Card.Body>{product.artist_comments} </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant='link' eventKey='1'>
+                    Reviews
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey='1'>
+                  <Card.Body>
+                    Reviews go here. Reviews go here.Reviews go here.Reviews go
+                    here.Reviews go here.
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant='link' eventKey='2'>
+                    Information about this work
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey='2'>
+                  <Card.Body>
+                    {/* <Table striped bordered hover> */}
+                    <Table size='sm' boderless>
+                      <tbody>
+                        <tr>
+                          <th style={{ width: '1%' }}></th>
+                          <th style={{ width: '5%' }}></th>
+                          <th style={{ width: '20%' }}></th>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>Location:</td>
+                          <td>{product.location}</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td style={{ fontWeight: 'bold' }}>Framed:</td>
+                          <td>{product.framed}</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>Status</td>
+                          <td>{product.status}</td>
+                        </tr>
+                      </tbody>
+                    </Table>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </Accordion>
           </Col>
-          {/* <Col md={6}>
-            <Card>
-              <ListGroup variant='flush'>
-                <ListGroup.Item>
-                  <Row>
-                    <Col>Price:</Col>
-                    <Col>
-                      <strong>${product.price}</strong>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Row>
-                    <Col>Status:</Col>
-                    <Col>{product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}</Col>
-                  </Row>
-                </ListGroup.Item>
-
-                {product.countInStock > 0 && (
-                  <ListGroupItem>
-                    <Row>
-                      <Col>Qty</Col>
-                      <Col>
-                        <Form.Control
-                          as='select'
-                          value={qty}
-                          onChange={(e) => setQty(e.target.value)}
-                        >
-                          {[...Array(product.countInStock).keys()].map((x) => (
-                            <option key={x + 1} value={x + 1}>
-                              {x + 1}
-                            </option>
-                          ))}
-                        </Form.Control>
-                      </Col>
-                    </Row>
-                  </ListGroupItem>
-                )}
-
-                <ListGroup.Item>
-                  <Button
-                    onClick={addToCartHandler}
-                    className='btn-block'
-                    type='button'
-                    disabled={product.countInStock === 0}
-                  >
-                    Add to Cart
-                  </Button>
-                </ListGroup.Item>
-              </ListGroup>
-            </Card>
-          </Col> */}
         </Row>
       )}
     </>

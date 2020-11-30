@@ -20,4 +20,20 @@ h3 {
 .artComments {
   font-family: Arial, Helvetica, sans-serif;
   font-variant-caps: titling-caps;
+  font-size: 1.6em;
+}
+
+.paintTitle {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.medium {
+  font-size: 1.4rem;
+  color: gray;
+}
+
+.otherInfo {
+  font-size: 1.2rem;
+  color: gray;
 }
