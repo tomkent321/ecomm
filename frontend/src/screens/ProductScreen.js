@@ -48,12 +48,14 @@ const ProductScreen = ({ history, match }) => {
       ) : (
         <Row>
           <Col md={12}>
-            <Image
-              src={product.image}
-              alt={product.name}
-              fluid
-              className='my-3'
-            ></Image>
+            <Link to='/'>
+              <Image
+                src={product.image}
+                alt={product.name}
+                fluid
+                className='my-3'
+              ></Image>
+            </Link>
           </Col>
           <Card border='light' className='text-center col-md-12'>
             {/* <Card.Header>Featured</Card.Header> */}
