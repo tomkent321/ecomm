@@ -32,7 +32,7 @@ const Product = ({ product }) => {
           {product.year}
         </Card.Text>
         <Card.Text className='otherInfo'>
-          {product.price > 0 ? <h6>${product.price}</h6> : ''}
+          {product.price > 0 ? <h6>${product.price.toFixed(2)}</h6> : ''}
         </Card.Text>
       </Card.Body>
     </Card>

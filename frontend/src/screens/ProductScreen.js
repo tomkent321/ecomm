@@ -64,6 +64,9 @@ const ProductScreen = ({ history, match }) => {
                 {product.height} x {product.width}"
               </Card.Text>
               <Card.Text className='otherInfo'>{product.year}</Card.Text>
+              <Card.Text className='otherInfo'>
+                {product.price > 0 ? <h6>${product.price.toFixed(2)}</h6> : ''}
+              </Card.Text>
             </Card.Body>
             {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
           </Card>
@@ -128,89 +131,94 @@ const ProductScreen = ({ history, match }) => {
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>
-              <Card>
-                <Card.Header>
-                  <Accordion.Toggle as={Button} variant='link' eventKey='3'>
-                    Purchase
-                  </Accordion.Toggle>
-                </Card.Header>
-                <Accordion.Collapse eventKey='3'>
-                  <Card.Body>
-                    <Row>
-                      <Col md={6}>
-                        <Card>
-                          <ListGroup variant='flush'>
-                            <ListGroup.Item>
-                              <Row>
-                                <Col>Price: </Col>
-                                <Col>
-                                  <strong>
-                                    {product.price === 0 ? (
-                                      <h6>Not for Sale</h6>
-                                    ) : (
-                                      <h6>${product.price}</h6>
-                                    )}
-                                  </strong>
-                                </Col>
-                              </Row>
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              <Row>
-                                <Col>Status</Col>
-                                <Col>
-                                  {product.price === 0 ? (
-                                    <h6>Not for Sale</h6>
-                                  ) : product.countInStock > 0 ? (
-                                    'Available'
-                                  ) : (
-                                    'Sold'
-                                  )}
-                                </Col>
-                              </Row>
-                            </ListGroup.Item>
-                            {product.countInStock > 0 && (
+
+              {product.price === 0 ? (
+                ''
+              ) : (
+                <Card>
+                  <Card.Header>
+                    <Accordion.Toggle as={Button} variant='link' eventKey='3'>
+                      Purchase
+                    </Accordion.Toggle>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey='3'>
+                    <Card.Body>
+                      <Row>
+                        <Col md={6}>
+                          <Card>
+                            <ListGroup variant='flush'>
                               <ListGroup.Item>
                                 <Row>
-                                  <Col>Qty</Col>
+                                  <Col>Price: </Col>
                                   <Col>
-                                    <Form.Control
-                                      as='select'
-                                      value={qty}
-                                      onChange={(e) => setQty(e.target.value)}
-                                    >
-                                      {[
-                                        ...Array(product.countInStock).keys(),
-                                      ].map((x) => (
-                                        <option key={x + 1} value={x + 1}>
-                                          {x + 1}
-                                        </option>
-                                      ))}
-                                    </Form.Control>
+                                    <strong>
+                                      {product.price === 0 ? (
+                                        <h6>Not for Sale</h6>
+                                      ) : (
+                                        <h6>{product.price}</h6>
+                                      )}
+                                    </strong>
                                   </Col>
                                 </Row>
                               </ListGroup.Item>
-                            )}
+                              <ListGroup.Item>
+                                <Row>
+                                  <Col>Status</Col>
+                                  <Col>
+                                    {product.price === 0 ? (
+                                      <h6>Not for Sale</h6>
+                                    ) : product.countInStock > 0 ? (
+                                      'Available'
+                                    ) : (
+                                      'Sold'
+                                    )}
+                                  </Col>
+                                </Row>
+                              </ListGroup.Item>
+                              {product.countInStock > 0 && (
+                                <ListGroup.Item>
+                                  <Row>
+                                    <Col>Qty</Col>
+                                    <Col>
+                                      <Form.Control
+                                        as='select'
+                                        value={qty}
+                                        onChange={(e) => setQty(e.target.value)}
+                                      >
+                                        {[
+                                          ...Array(product.countInStock).keys(),
+                                        ].map((x) => (
+                                          <option key={x + 1} value={x + 1}>
+                                            {x + 1}
+                                          </option>
+                                        ))}
+                                      </Form.Control>
+                                    </Col>
+                                  </Row>
+                                </ListGroup.Item>
+                              )}
 
-                            <ListGroup.Item>
-                              <Button
-                                onClick={addToCartHandler}
-                                className='btn-block'
-                                type='button'
-                                disabled={
-                                  product.countInStock === 0 ||
-                                  product.price === 0
-                                }
-                              >
-                                Add to Purchases
-                              </Button>
-                            </ListGroup.Item>
-                          </ListGroup>
-                        </Card>
-                      </Col>
-                    </Row>
-                  </Card.Body>
-                </Accordion.Collapse>
-              </Card>
+                              <ListGroup.Item>
+                                <Button
+                                  onClick={addToCartHandler}
+                                  className='btn-block'
+                                  type='button'
+                                  disabled={
+                                    product.countInStock === 0 ||
+                                    product.price === 0
+                                  }
+                                >
+                                  Add to Purchases
+                                </Button>
+                              </ListGroup.Item>
+                            </ListGroup>
+                          </Card>
+                        </Col>
+                      </Row>
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              )}
             </Accordion>
           </Col>
         </Row>

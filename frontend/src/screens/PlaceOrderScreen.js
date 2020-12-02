@@ -16,22 +16,19 @@ const PlaceOrderScreen = () => {
   const shippingRate = 0.075
   const taxRate = 0.1
 
-  const itemsP = cart.cartItems.reduce(
-    (acc, item) => acc + item.price * item.qty,
-    0
-  )
-
   cart.itemsPrice = addDecimals(
     cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   )
-  const shippingP = itemsP * shippingRate
 
   cart.shippingPrice = addDecimals(cart.itemsPrice * shippingRate)
 
-  const taxP = itemsP * taxRate
   cart.taxPrice = addDecimals(cart.itemsPrice * taxRate)
 
-  cart.totalPrice = addDecimals(itemsP + shippingP + taxP)
+  cart.totalPrice = (
+    Number(cart.itemsPrice) +
+    Number(cart.shippingPrice) +
+    Number(cart.taxPrice)
+  ).toFixed(2)
 
   const placeOrderHandler = () => {
     console.log('order placed')
