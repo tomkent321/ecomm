@@ -8,6 +8,8 @@ const Header = () => {
   const dispatch = useDispatch()
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
+  const cartInfo = useSelector((state) => state.cart)
+  const { cartItems } = cartInfo
   const logoutHandler = () => {
     dispatch(logout())
   }
@@ -21,11 +23,16 @@ const Header = () => {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>
-              <LinkContainer to='/cart'>
-                <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i> Cart
-                </Nav.Link>
-              </LinkContainer>
+              {cartItems.length === 0 ? (
+                ''
+              ) : (
+                <LinkContainer to='/cart'>
+                  <Nav.Link>
+                    <i className='fas fa-shopping-cart'></i> Cart
+                  </Nav.Link>
+                </LinkContainer>
+              )}
+
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id='username'>
                   <LinkContainer to='/profile'>

@@ -148,7 +148,7 @@ const ProductScreen = ({ history, match }) => {
                                     {product.price === 0 ? (
                                       <h6>Not for Sale</h6>
                                     ) : (
-                                      product.price
+                                      <h6>${product.price}</h6>
                                     )}
                                   </strong>
                                 </Col>

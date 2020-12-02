@@ -31,6 +31,9 @@ const Product = ({ product }) => {
         <Card.Text as='h6' className='py-2'>
           {product.year}
         </Card.Text>
+        <Card.Text className='otherInfo'>
+          {product.price > 0 ? <h6>${product.price}</h6> : ''}
+        </Card.Text>
       </Card.Body>
     </Card>
   )
