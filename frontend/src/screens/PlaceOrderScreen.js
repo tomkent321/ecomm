@@ -10,6 +10,10 @@ const PlaceOrderScreen = () => {
 
   //Caclulate prices
 
+  const numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
+
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2)
   }
@@ -20,15 +24,22 @@ const PlaceOrderScreen = () => {
     cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   )
 
+  const itemsPrice = cart.cartItems.reduce(
+    (acc, item) => acc + item.price * item.qty,
+    0
+  )
+
   cart.shippingPrice = addDecimals(cart.itemsPrice * shippingRate)
 
   cart.taxPrice = addDecimals(cart.itemsPrice * taxRate)
 
-  cart.totalPrice = (
-    Number(cart.itemsPrice) +
-    Number(cart.shippingPrice) +
-    Number(cart.taxPrice)
-  ).toFixed(2)
+  cart.totalPrice = numberWithCommas(
+    (
+      Number(cart.itemsPrice) +
+      Number(cart.shippingPrice) +
+      Number(cart.taxPrice)
+    ).toFixed(2)
+  )
 
   const placeOrderHandler = () => {
     console.log('order placed')

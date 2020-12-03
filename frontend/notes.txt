@@ -96,3 +96,15 @@ Lecture on buidling the login HomeScreen:
     * useState with []
     * in const LoginScreen = ({ * location and * history args})
     * const redirect = location.search ? location.search.split('=')[1] : '/'  review what's going on with the split
+
+chairs  24w 18h
+
+monument   16w 20h
+
+stagecoach 23 1/4w 17 1/20h
+
+desert 19 1/2w  15 1/20h
+
+winter  19 1/4w  15 3/4h
+
+
