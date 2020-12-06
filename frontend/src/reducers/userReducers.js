@@ -9,7 +9,7 @@ export const userLoginReducer = (state = {}, action) => {
     case actionType.USER_LOGIN_FAIL:
       return { loading: false, error: action.payload }
     case actionType.USER_LOGOUT:
-      return {}
+      return { cart: {} }
     default:
       return state
   }
@@ -44,7 +44,7 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
 export const userUpdateProfileReducer = (state = {}, action) => {
   switch (action.type) {
     case actionType.USER_UPDATE_PROFILE_REQUEST:
-      return {  loading: true }
+      return { loading: true }
     case actionType.USER_UPDATE_PROFILE_SUCCESS:
       return { loading: false, success: true, userInfo: action.payload }
     case actionType.USER_UPDATE_PROFILE_FAIL:

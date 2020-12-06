@@ -27,6 +27,9 @@ const CartScreen = ({ match, location, history }) => {
     history.push('/login?redirect=shipping')
   }
 
+  const returnToGalleryHandler = () => {
+    history.push('/')
+  }
   return (
     <Row>
       <Col md={8}>
@@ -105,6 +108,17 @@ const CartScreen = ({ match, location, history }) => {
                 onClick={checkoutHandler}
               >
                 Proceed to Checkout
+              </Button>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Button
+                variant='secondary'
+                size='sm'
+                type='button'
+                className='btn-block'
+                onClick={returnToGalleryHandler}
+              >
+                Return to gallery
               </Button>
             </ListGroup.Item>
           </ListGroup>
