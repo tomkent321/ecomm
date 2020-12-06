@@ -11,7 +11,7 @@ import connectDB from './config/db.js'
 // be sure to import the models for the collection to change
 // called with:
 // from the root
-// node backend/dbFieldAdder       to add a field
+// node backend/dbFieldAdder.js       to add a field
 
 dotenv.config()
 
@@ -20,7 +20,7 @@ connectDB()
 const changeRemoteDb = async () => {
   try {
     //put the desired db change and collection below
-    await Product.updateMany({}, { $set: { countInStock: 1 } })
+    await Product.updateMany({}, { $set: { subject: 'scenery' } })
 
     console.log('Data Added!'.green.inverse)
     process.exit()

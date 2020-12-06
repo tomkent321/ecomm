@@ -42,6 +42,10 @@ const productSchema = mongoose.Schema(
       required: false,
       default: 'No comments at this time.',
     },
+    subject: {
+      type: String,
+      required: true,
+    },
 
     reviews: [reviewSchema],
 

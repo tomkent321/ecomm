@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
-import { logout } from '../actions/userActions'
+import { logout, userChangeSortOption } from '../actions/userActions'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -13,6 +13,15 @@ const Header = () => {
   const logoutHandler = () => {
     dispatch(logout())
   }
+
+  const sortHandler = (selectedKey) => {
+    dispatch(userChangeSortOption(selectedKey))
+  }
+
+  // useEffect(() => {
+  //   dispatch(userChangeSortOption())
+  // }, [dispatch])
+
   return (
     <header>
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
@@ -23,6 +32,35 @@ const Header = () => {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>
+              <NavDropdown
+                title='Gallery Sort'
+                id='basic-nav-dropdown'
+                onSelect={(selectedKey) => sortHandler(selectedKey)}
+              >
+                <NavDropdown.Item eventKey='byName'>
+                  Sort by Name
+                </NavDropdown.Item>
+                <NavDropdown.Item eventKey='byYear'>
+                  Sort by Year
+                </NavDropdown.Item>
+                <NavDropdown.Item eventKey='byMedium'>
+                  Sort by Medium
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item eventKey='scenery'>
+                  See Only Scenery
+                </NavDropdown.Item>
+                <NavDropdown.Item eventKey='southwestern'>
+                  See Only Southwestern
+                </NavDropdown.Item>
+                <NavDropdown.Item eventKey='still_life'>
+                  See Only Still Life
+                </NavDropdown.Item>
+                <NavDropdown.Item eventKey='people'>
+                  See Only People
+                </NavDropdown.Item>
+              </NavDropdown>
+
               {cartItems.length === 0 ? (
                 ''
               ) : (

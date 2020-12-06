@@ -41,6 +41,15 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
   }
 }
 
+export const userChangeSortOption = (state = {}, action) => {
+  switch (action.type) {
+    case actionType.USER_SORT_CHOICE:
+      return { userSort: action.payload }
+    default:
+      return state
+  }
+}
+
 export const userUpdateProfileReducer = (state = {}, action) => {
   switch (action.type) {
     case actionType.USER_UPDATE_PROFILE_REQUEST:

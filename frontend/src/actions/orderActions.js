@@ -149,7 +149,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
       dispatch(logout())
     }
     dispatch({
-      type: ORDER_DELIVER_FAIL,
+      type: actionType.ORDER_DELIVER_FAIL,
       payload: message,
     })
   }

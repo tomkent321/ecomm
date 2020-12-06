@@ -46,6 +46,13 @@ export const logout = () => (dispatch) => {
   document.location.href = '/login'
 }
 
+export const userChangeSortOption = (selectedKey) => async (dispatch) => {
+  dispatch({
+    type: actionType.USER_SORT_CHOICE,
+    payload: selectedKey,
+  })
+}
+
 // export const logout = () => (dispatch) => {
 //   localStorage.removeItem('userInfo')
 //   localStorage.removeItem('cartItems')
@@ -57,9 +64,6 @@ export const logout = () => (dispatch) => {
 //   dispatch({ type: USER_LIST_RESET })
 //   document.location.href = '/login'
 // }
-
-
-
 
 export const register = (name, email, password) => async (dispatch) => {
   try {

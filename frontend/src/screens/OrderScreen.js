@@ -85,6 +85,10 @@ const OrderScreen = ({ match, history }) => {
     dispatch(deliverOrder(order))
   }
 
+  const returnToGalleryHandler = () => {
+    history.push('/')
+  }
+
   return loading ? (
     <Loader />
   ) : error ? (

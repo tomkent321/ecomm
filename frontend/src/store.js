@@ -11,6 +11,7 @@ import {
   userRegisterReducer,
   userDetailsReducer,
   userUpdateProfileReducer,
+  userChangeSortOption,
 } from './reducers/userReducers.js'
 import {
   orderCreateReducer,
@@ -29,6 +30,7 @@ const reducer = combineReducers({
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
+  userSort: userChangeSortOption,
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
@@ -54,6 +56,7 @@ const initialState = {
     paymentMethod: paymentMethodFromStorage,
   },
   userLogin: { userInfo: userInfoFromStorage },
+  // userSort: 'byName',
 }
 
 const middleware = [thunk]
