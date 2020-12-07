@@ -17,6 +17,7 @@ import {
   orderCreateReducer,
   orderDetailsReducer,
   orderPayReducer,
+  orderListMyReducer,
 } from './reducers/orderReducers.js'
 
 const reducer = combineReducers({
@@ -31,6 +32,7 @@ const reducer = combineReducers({
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
   userSort: userChangeSortOption,
+  orderListMy: orderListMyReducer,
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
@@ -56,7 +58,6 @@ const initialState = {
     paymentMethod: paymentMethodFromStorage,
   },
   userLogin: { userInfo: userInfoFromStorage },
-  // userSort: 'byName',
 }
 
 const middleware = [thunk]

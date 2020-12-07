@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
@@ -18,9 +18,7 @@ const Header = () => {
     dispatch(userChangeSortOption(selectedKey))
   }
 
-  // useEffect(() => {
-  //   dispatch(userChangeSortOption())
-  // }, [dispatch])
+  
 
   return (
     <header>
@@ -58,6 +56,10 @@ const Header = () => {
                 </NavDropdown.Item>
                 <NavDropdown.Item eventKey='people'>
                   See Only People
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item eventKey='for_sale'>
+                  See Paintings for Sale
                 </NavDropdown.Item>
               </NavDropdown>
 

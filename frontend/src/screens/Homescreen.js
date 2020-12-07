@@ -7,8 +7,6 @@ import Loader from '../components/Loader.js'
 import Message from '../components/Message.js'
 import { listProducts } from '../actions/productActions.js'
 
-// import products from '../products'
-
 const HomeScreen = () => {
   const dispatch = useDispatch()
   const productList = useSelector((state) => state.productList)
@@ -31,7 +29,6 @@ const HomeScreen = () => {
         return a === b ? 0 : a > b ? 1 : -1
       })
       break
-
     case 'byYear':
       products.sort(function (x, y) {
         let a = x.year,
@@ -39,7 +36,6 @@ const HomeScreen = () => {
         return a === b ? 0 : a > b ? 1 : -1
       })
       break
-
     case 'byMedium':
       //this is a reverse sort to put all before acrylic
       products.sort(function (x, y) {
@@ -56,26 +52,27 @@ const HomeScreen = () => {
       break
     case 'southwestern':
       arrFiltered = true
-      productsFiltered = 
-      products.filter(function (x) {
+      productsFiltered = products.filter(function (x) {
         return x.subject === 'southwestern'
       })
       break
     case 'people':
       arrFiltered = true
-      productsFiltered = 
-      products.filter(function (x) {
+      productsFiltered = products.filter(function (x) {
         return x.subject === 'people'
       })
       break
     case 'still_life':
       arrFiltered = true
-     
       productsFiltered = products.filter(function (x) {
         return x.subject === 'still_life'
       })
+    case 'for_sale':
+      arrFiltered = true
+      productsFiltered = products.filter(function (x) {
+        return x.price > 0 ?? x.qty > 0
+      })
       break
-
     default:
       products.sort(function (x, y) {
         let a = x.name.toUpperCase(),
@@ -84,14 +81,13 @@ const HomeScreen = () => {
       })
       break
   }
-  
+
   if (arrFiltered) {
     newProduct = productsFiltered
-    
   } else {
     newProduct = products
   }
-  
+
   console.log(newProduct)
   return (
     <>
