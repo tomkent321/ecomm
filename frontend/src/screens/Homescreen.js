@@ -1,4 +1,3 @@
-// useEffect allows calling backend
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
@@ -67,12 +66,14 @@ const HomeScreen = () => {
       productsFiltered = products.filter(function (x) {
         return x.subject === 'still_life'
       })
+      break
     case 'for_sale':
       arrFiltered = true
       productsFiltered = products.filter(function (x) {
         return x.price > 0 ?? x.qty > 0
       })
       break
+
     default:
       products.sort(function (x, y) {
         let a = x.name.toUpperCase(),
@@ -84,14 +85,15 @@ const HomeScreen = () => {
 
   if (arrFiltered) {
     newProduct = productsFiltered
+    arrFiltered = false
   } else {
     newProduct = products
   }
 
-  console.log(newProduct)
   return (
     <>
       <h1>Donna Hurd Art Gallery</h1>
+      <h6>Click any picture for details</h6>
       {loading ? (
         <Loader />
       ) : error ? (

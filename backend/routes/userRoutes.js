@@ -10,6 +10,7 @@ import { protect } from '../middleware/authMiddleware.js'
 //shown as the first argument in the get call
 
 router.route('/').post(registerUser)
+
 router.post('/login', authUser)
 router
   .route('/profile')

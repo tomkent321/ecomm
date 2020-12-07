@@ -7,6 +7,7 @@ import connectDB from './config/db.js'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
+// import aboutRoutes from './routes/aboutRoutes.js'
 
 dotenv.config()
 //Then use .env files to store sensitive data

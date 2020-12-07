@@ -17,8 +17,9 @@ const Header = () => {
   const sortHandler = (selectedKey) => {
     dispatch(userChangeSortOption(selectedKey))
   }
-
-  
+  const aboutHandler = (selectedKey) => {
+    dispatch(userChangeSortOption(selectedKey))
+  }
 
   return (
     <header>
@@ -30,6 +31,19 @@ const Header = () => {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>
+              <NavDropdown
+                title='About'
+                id='basic-nav-dropdown'
+                onSelect={(selectedKey) => aboutHandler(selectedKey)}
+              >
+                <NavDropdown.Item href='/about/artist'>
+                  About the Artist
+                </NavDropdown.Item>
+                <NavDropdown.Item href='/about/site'>
+                  About the Site
+                </NavDropdown.Item>
+              </NavDropdown>
+
               <NavDropdown
                 title='Gallery Sort'
                 id='basic-nav-dropdown'
