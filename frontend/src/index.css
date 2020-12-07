@@ -37,3 +37,14 @@ h3 {
   font-size: 1.2rem;
   color: gray;
 }
+
+.aboutText {
+  font-size: 1.1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /* font-style: italic; */
+}
+
+.leadText {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
