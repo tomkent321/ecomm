@@ -43,6 +43,8 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem('shippingAddress')
   localStorage.removeItem('paymentMethod')
   dispatch({ type: actionType.USER_LOGOUT })
+  dispatch({ type: actionType.USER_DETAILS_RESET })
+  dispatch({ type: actionType.ORDER_LIST_MY_RESET })
   document.location.href = '/login'
 }
 
@@ -169,6 +171,38 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: actionType.USER_UPDATE_PROFILE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.response,
+    })
+  }
+}
+
+export const listUsers = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: actionType.USER_LIST_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+    
+    const { data } = await axios.get(`/api/users`, config)
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+    dispatch({
+      type: actionType.USER_LIST_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: actionType.USER_LIST_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

@@ -52,6 +52,8 @@ export const orderListMyReducer = (state = { orders: [] }, action) => {
       return { loading: false, orders: action.payload }
     case actionType.ORDER_LIST_MY_FAIL:
       return { loading: false, error: action.payload }
+    case actionType.ORDER_LIST_MY_RESET:
+      return { orders: [] }
     default:
       return state
   }

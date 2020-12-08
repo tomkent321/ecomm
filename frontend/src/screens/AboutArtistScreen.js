@@ -111,7 +111,8 @@ const AboutArtistScreen = () => {
               </p>
               <p>
                 Perhaps the purity of that devotion to beauty will inspire you
-                as you enjoy the full scope of her work.
+                to find beauty in what you see as you enjoy the full scope of
+                her work.
               </p>
             </div>
           </div>
