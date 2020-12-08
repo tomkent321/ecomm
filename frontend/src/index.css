@@ -48,3 +48,19 @@ h3 {
   font-size: 1.8rem;
   font-weight: 700;
 }
+
+.about-img {
+  margin-top: -50px;
+}
+
+#page-header {
+  height: 200px;
+  background: url('../src/srcImages/aboutBack.jpg');
+  background-repeat: no-repeat;
+  background-position: 0 -25px;
+
+  background-attachment: fixed;
+  color: #fff;
+  border-bottom: 1px #eee solid;
+  padding-top: 50px;
+}
