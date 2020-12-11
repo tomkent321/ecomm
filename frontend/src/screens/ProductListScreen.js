@@ -4,7 +4,12 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message.js'
 import Loader from '../components/Loader.js'
-import { listProducts } from '../actions/productActions'
+import {
+  listProducts,
+  deleteProduct,
+  createProduct,
+} from '../actions/productActions'
+import * as actionType from '../actions/actionTypes.js'
 
 const ProductListScreen = ({ history, match }) => {
   const dispatch = useDispatch()
@@ -12,36 +17,69 @@ const ProductListScreen = ({ history, match }) => {
   const productList = useSelector((state) => state.productList)
   const { loading, error, products } = productList
 
+  const productDelete = useSelector((state) => state.productDelete)
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = productDelete
+
+  const productCreate = useSelector((state) => state.productCreate)
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    product: createdProduct,
+  } = productCreate
+
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts())
-    } else {
+    dispatch({ type: actionType.PRODUCT_CREATE_RESET })
+    if (!userInfo.isAdmin) {
       history.push('/login')
     }
-  }, [dispatch, history, userInfo])
+
+    if (successCreate) {
+      history.push(`/admin/product/${createdProduct._id}/edit`)
+    } else {
+      dispatch(listProducts())
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successDelete,
+    successCreate,
+    createProduct,
+  ])
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure?')) {
-      // dispatch(deleteUser(id))
+      dispatch(deleteProduct(id))
     }
   }
-
+  const createProductHandler = () => {
+    dispatch(createProduct())
+  }
   return (
     <>
       <Row className='align-items-center'>
         <Col>
-          <h1>Products</h1>
+          <h1>Paintings</h1>
         </Col>
         <Col className='text-right'>
           <Button className='my-3' onClick={createProductHandler}>
-            <i className='fas fa-plus'></i>
-            Create Product{' '}
+            <i className='fas fa-plus'></i> Add Painting
           </Button>
         </Col>
       </Row>
+      {loadingDelete && <Loader />}
+      {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
+      {loadingCreate && <Loader />}
+      {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
+
       {loading ? (
         <Loader />
       ) : error ? (
@@ -52,28 +90,35 @@ const ProductListScreen = ({ history, match }) => {
             <tr>
               <th>ID</th>
               <th>NAME</th>
-              <th>EMAIL</th>
-              <th>ADMIM</th>
+              <th>IMG</th>
+              {/* <th>YEAR</th>
+              <th>HT</th>
+              <th>WID</th> */}
+              <th>PRICE</th>
+              {/* <th>SUBJECT</th> */}
+              <th>STATUS</th>
+              {/* <th>FRAMED</th> */}
+              <th>LOCATION</th>
+              {/* <th>ARTIST COMMENT</th> */}
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
-              <tr key={user._id}>
-                <td>{user._id}</td>
-                <td>{user.name}</td>
+            {products.map((product) => (
+              <tr key={product._id}>
+                <td>{product._id}</td>
+                <td>{product.name}</td>
+                <td>{product.image.slice(8)}</td>
+                {/* <td>{product.year}</td>
+                <td>{product.height}</td>
+                <td>{product.width}</td> */}
+                <td>${product.price}</td>
+                {/* <td>{product.subject}</td> */}
+                <td>{product.status}</td>
+                {/* <td>{product.framed}</td> */}
+                <td>{product.location}</td>
+                {/* <td>{product.artist_comments}</td> */}
                 <td>
-                  <a href={`mailto: ${user.email}`}></a>
-                  {user.email}
-                </td>
-                <td>
-                  {user.isAdmin ? (
-                    <i className='fas fa-check' style={{ color: 'green' }}></i>
-                  ) : (
-                    <i className='fas fa-times' style={{ color: 'red' }}></i>
-                  )}
-                </td>
-                <td>
-                  <LinkContainer to={`/admin/user/${user._id}/edit`}>
+                  <LinkContainer to={`/admin/product/${product._id}/edit`}>
                     <Button variant='light' className='btn-sm'>
                       <i className='fas fa-edit'></i>
                     </Button>
@@ -81,7 +126,7 @@ const ProductListScreen = ({ history, match }) => {
                   <Button
                     variant='danger'
                     className='btn-sm'
-                    onClick={() => deleteHandler(user._id)}
+                    onClick={() => deleteHandler(product._id)}
                   >
                     <i className='fas fa-trash'></i>
                   </Button>

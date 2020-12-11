@@ -17,9 +17,8 @@ h3 {
   margin: 0.2rem;
 }
 
-.artComments {
-  font-family: Arial, Helvetica, sans-serif;
-  font-variant-caps: titling-caps;
+.artistComments {
+  font-family: 'Dancing Script', cursive;
   font-size: 1.6em;
 }
 

@@ -34,6 +34,70 @@ const ProductScreen = ({ history, match }) => {
 
   return (
     <>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant='danger'>{error} </Message>
+      ) : (
+        <>
+          <Row>
+            <Col>
+              <Link className='btn btn-light my-3' to='/'>
+                Go Back
+              </Link>
+
+              {product.artist_comments !== ' ' ? (
+                <Button
+                  type='button'
+                  className='btn btn-light my-3'
+                  data-bs-toggle='modal'
+                  data-bs-target='#artistCommentsModal'
+                >
+                  Donna's comments
+                </Button>
+              ) : (
+                ''
+              )}
+              <Button
+                type='button'
+                className='btn btn-light my-3'
+                data-bs-toggle='modal'
+                data-bs-target='#pictureInfoModal'
+              >
+                Painting Information
+              </Button>
+
+              {product.price === 0 ? (
+                ''
+              ) : (
+                <Button
+                  type='button'
+                  className='btn btn-light my-3'
+                  data-bs-toggle='modal'
+                  data-bs-target='#purchaseInformationModal'
+                >
+                  Purchase Information
+                </Button>
+              )}
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md={12}>
+              <Link to='/'>
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  // fluid
+                  // className='my-3'
+                  className='productImage'
+                ></Image>
+              </Link>
+            </Col>
+          </Row>
+        </>
+      )}
+
       {/* modal: artist comments */}
       <div
         className='modal fade'
@@ -42,7 +106,7 @@ const ProductScreen = ({ history, match }) => {
         aria-labelledby='artistCommentsModalLabel'
         aria-hidden='true'
       >
-        <div className='modal-dialog  modal-dialog-centered'>
+        <div className='modal-dialog  modal-dialog-centered modal-lg'>
           <div className='modal-content'>
             <div className='modal-header'>
               <h5 className='modal-title' id='artistCommentsModalLabel'>
@@ -55,7 +119,7 @@ const ProductScreen = ({ history, match }) => {
                 aria-label='Close'
               ></button>
             </div>
-            <div className='modal-body'>{product.artist_comments}</div>
+            <div className='modal-body artistComments'>{product.artist_comments}</div>
           </div>
         </div>
       </div>
@@ -143,7 +207,7 @@ const ProductScreen = ({ history, match }) => {
                           {product.price === 0 ? (
                             <h6>Not for Sale</h6>
                           ) : (
-                            <h6>${product.price.toFixed(2)}</h6>
+                            <h6>${product.price}</h6>
                           )}
                         </strong>
                       </Col>
@@ -191,70 +255,6 @@ const ProductScreen = ({ history, match }) => {
           </div>
         </div>
       </div>
-
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <Message variant='danger'>{error} </Message>
-      ) : (
-        <>
-          <Row>
-            <Col>
-              <Link className='btn btn-light my-3' to='/'>
-                Go Back
-              </Link>
-
-              {product.artist_comments !== ' ' ? (
-                <Button
-                  type='button'
-                  className='btn btn-light my-3'
-                  data-bs-toggle='modal'
-                  data-bs-target='#artistCommentsModal'
-                >
-                  Donna's comments
-                </Button>
-              ) : (
-                ''
-              )}
-              <Button
-                type='button'
-                className='btn btn-light my-3'
-                data-bs-toggle='modal'
-                data-bs-target='#pictureInfoModal'
-              >
-                Painting Information
-              </Button>
-
-              {product.price === 0 ? (
-                ''
-              ) : (
-                <Button
-                  type='button'
-                  className='btn btn-light my-3'
-                  data-bs-toggle='modal'
-                  data-bs-target='#purchaseInformationModal'
-                >
-                  Purchase Information
-                </Button>
-              )}
-            </Col>
-          </Row>
-
-          <Row>
-            <Col md={12}>
-              <Link to='/'>
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  // fluid
-                  // className='my-3'
-                  className='productImage'
-                ></Image>
-              </Link>
-            </Col>
-          </Row>
-        </>
-      )}
     </>
   )
 }
