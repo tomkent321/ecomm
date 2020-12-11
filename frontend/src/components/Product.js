@@ -5,7 +5,7 @@ import Rating from './Rating'
 
 const Product = ({ product }) => {
   return (
-    <Card className='my-3 p-3 text-center rounded h-100 mb-2'>
+    <Card className=' p-2 text-center rounded h-95 mb-4'>
       <Link to={`/product/${product._id}`}>
         <Card.Img src={product.image} variant='top' />
       </Link>
@@ -24,7 +24,7 @@ const Product = ({ product }) => {
         <Card.Text as='div'>
           {/* <Rating value={product.rating} text={`${product.numReviews} reviews`} /> */}
           <Card.Text as='h6' className='py-2'>
-            {product.height} x {product.width}"
+            {product.height}" x {product.width}"
           </Card.Text>
         </Card.Text>
         {/* <Card.Text as='h3'>${product.price}</Card.Text> */}
@@ -32,7 +32,11 @@ const Product = ({ product }) => {
           {product.year}
         </Card.Text>
         <Card.Text className='otherInfo'>
-          {product.price > 0 ? <h6>${product.price.toFixed(2)}</h6> : ''}
+          {product.price > 0 ? (
+            <h6 className='visible'>${product.price.toFixed(2)}</h6>
+          ) : (
+            <h6 className='invisible'>${product.price.toFixed(2)}</h6>
+          )}
         </Card.Text>
       </Card.Body>
     </Card>
