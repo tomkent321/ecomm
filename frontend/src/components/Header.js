@@ -22,14 +22,14 @@ const Header = () => {
   }
 
   return (
-    <header  className='sticky-top'>
+    <header className='sticky-top'>
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
             <Navbar.Brand>
               Donna Hurd Fine Art Studio
               <h6 className='clickHere'>click for Gallery</h6>
-              </Navbar.Brand>
+            </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
@@ -73,6 +73,9 @@ const Header = () => {
                 </NavDropdown.Item>
                 <NavDropdown.Item eventKey='people'>
                   See Only People
+                </NavDropdown.Item>
+                <NavDropdown.Item eventKey='all'>
+                  See Everything
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item eventKey='for_sale'>

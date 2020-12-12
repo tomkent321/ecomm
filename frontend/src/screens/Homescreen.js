@@ -74,6 +74,14 @@ const HomeScreen = () => {
       })
       break
 
+    case 'all':
+      products.sort(function (x, y) {
+        let a = x.name.toUpperCase(),
+          b = y.name.toUpperCase()
+        return a === b ? 0 : a > b ? 1 : -1
+      })
+      break
+
     default:
       products.sort(function (x, y) {
         let a = x.name.toUpperCase(),

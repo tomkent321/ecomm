@@ -80,7 +80,7 @@ const AboutArtistScreen = () => {
                 she showed no fear in expressing it on canvas or wood or paper.
               </p>
               <p>
-                It is fascinated to see the depth of style that each subject
+                It is fascinating to see the depth of style that each subject
                 evoked. Some paintings were ultra-realistic and detailed for
                 example see: “Flowers in Blue Pot” or “Flowers on Bamboo.”
                 Others bordered on impressionistic, see: “Midnight Solitude” and

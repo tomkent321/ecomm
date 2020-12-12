@@ -40,6 +40,7 @@ const OrderListScreen = ({ history }) => {
               <th>TOTAL PRICE</th>
               <th>PAID</th>
               <th>DELIVERED</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -72,16 +73,17 @@ const OrderListScreen = ({ history }) => {
                 </td>
               </tr>
             ))}
-            <h4>
-              Total Sales: $
-              {orders
-                .reduce((acc, item) => acc + item.totalPrice, 0)
-                .toFixed(2)}
-            </h4>
+            <Card>
+              <h6>
+                Total Sales: $
+                {orders
+                  .reduce((acc, item) => acc + item.totalPrice, 0)
+                  .toFixed(2)}
+              </h6>
+            </Card>
           </tbody>
         </Table>
       )}
-      <Card></Card>
     </>
   )
 }

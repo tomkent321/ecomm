@@ -46,14 +46,7 @@ const ProductListScreen = ({ history, match }) => {
     } else {
       dispatch(listProducts())
     }
-  }, [
-    dispatch,
-    history,
-    userInfo,
-    successDelete,
-    successCreate,
-    createProduct,
-  ])
+  }, [dispatch, history, userInfo, successDelete, successCreate, createProduct])
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure?')) {
@@ -99,6 +92,7 @@ const ProductListScreen = ({ history, match }) => {
               <th>STATUS</th>
               {/* <th>FRAMED</th> */}
               <th>LOCATION</th>
+              <th></th>
               {/* <th>ARTIST COMMENT</th> */}
             </tr>
           </thead>
