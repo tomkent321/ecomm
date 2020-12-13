@@ -1,7 +1,9 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import SearchBox from './SearchBox'
 import { logout, userChangeSortOption } from '../actions/userActions'
 
 const Header = () => {
@@ -33,6 +35,11 @@ const Header = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
+            <Route
+              className='search-box'
+              render={({ history }) => <SearchBox history={history} />}
+            />
+
             <Nav className='ml-auto'>
               <NavDropdown
                 title='About'
@@ -115,10 +122,10 @@ const Header = () => {
                     <NavDropdown.Item>Users</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to='/admin/productlist'>
-                    <NavDropdown.Item>Products</NavDropdown.Item>
+                    <NavDropdown.Item>Paintings</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to='/admin/orderlist'>
-                    <NavDropdown.Item>Orders</NavDropdown.Item>
+                    <NavDropdown.Item>Purchases</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>
               )}
@@ -131,3 +138,9 @@ const Header = () => {
 }
 
 export default Header
+
+// note how the search box is rendered into the header by inserting a route and then accessing the history as a render prop
+// being imbedded in the header component, it would not have had access to history
+
+// import { Route } from 'react-router-dom'
+// <Route render={({history}) => <SearchBox history={history} />} />

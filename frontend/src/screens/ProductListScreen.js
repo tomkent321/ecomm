@@ -4,6 +4,7 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message.js'
 import Loader from '../components/Loader.js'
+// import Paginate from '../components/Paginate.js'
 import {
   listProducts,
   deleteProduct,
@@ -15,7 +16,16 @@ const ProductListScreen = ({ history, match }) => {
   const dispatch = useDispatch()
 
   const productList = useSelector((state) => state.productList)
-  const { loading, error, products } = productList
+  const { loading, error, products, page, pages } = productList
+
+  // sort the products by name
+  const adminPages = 2
+
+  products.sort(function (x, y) {
+    let a = x.name.toUpperCase(),
+      b = y.name.toUpperCase()
+    return a === b ? 0 : a > b ? 1 : -1
+  })
 
   const productDelete = useSelector((state) => state.productDelete)
   const {
@@ -44,6 +54,7 @@ const ProductListScreen = ({ history, match }) => {
     if (successCreate) {
       history.push(`/admin/product/${createdProduct._id}/edit`)
     } else {
+      // dispatch(listProducts('', pageNumber))
       dispatch(listProducts())
     }
   }, [dispatch, history, userInfo, successDelete, successCreate, createProduct])
@@ -78,57 +89,61 @@ const ProductListScreen = ({ history, match }) => {
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
-        <Table striped bordered hover responsive className='table-sm'>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>NAME</th>
-              <th>IMG</th>
-              {/* <th>YEAR</th>
+        <>
+          <Table striped bordered hover responsive className='table-sm'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>IMG</th>
+                {/* <th>YEAR</th>
               <th>HT</th>
               <th>WID</th> */}
-              <th>PRICE</th>
-              {/* <th>SUBJECT</th> */}
-              <th>STATUS</th>
-              {/* <th>FRAMED</th> */}
-              <th>LOCATION</th>
-              <th></th>
-              {/* <th>ARTIST COMMENT</th> */}
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product._id}>
-                <td>{product._id}</td>
-                <td>{product.name}</td>
-                <td>{product.image.slice(8)}</td>
-                {/* <td>{product.year}</td>
+                <th>PRICE</th>
+                {/* <th>SUBJECT</th> */}
+                <th>STATUS</th>
+                {/* <th>FRAMED</th> */}
+                <th>LOCATION</th>
+                <th></th>
+                {/* <th>ARTIST COMMENT</th> */}
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product._id}>
+                  <td>{product._id}</td>
+                  <td>{product.name}</td>
+                  <td>{product.image.slice(8)}</td>
+                  {/* <td>{product.year}</td>
                 <td>{product.height}</td>
                 <td>{product.width}</td> */}
-                <td>${product.price}</td>
-                {/* <td>{product.subject}</td> */}
-                <td>{product.status}</td>
-                {/* <td>{product.framed}</td> */}
-                <td>{product.location}</td>
-                {/* <td>{product.artist_comments}</td> */}
-                <td>
-                  <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                    <Button variant='light' className='btn-sm'>
-                      <i className='fas fa-edit'></i>
+                  <td>${product.price}</td>
+                  {/* <td>{product.subject}</td> */}
+                  <td>{product.status}</td>
+                  {/* <td>{product.framed}</td> */}
+                  <td>{product.location}</td>
+                  {/* <td>{product.artist_comments}</td> */}
+                  <td>
+                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                      <Button variant='light' className='btn-sm'>
+                        <i className='fas fa-edit'></i>
+                      </Button>
+                    </LinkContainer>
+                    <Button
+                      variant='danger'
+                      className='btn-sm'
+                      onClick={() => deleteHandler(product._id)}
+                    >
+                      <i className='fas fa-trash'></i>
                     </Button>
-                  </LinkContainer>
-                  <Button
-                    variant='danger'
-                    className='btn-sm'
-                    onClick={() => deleteHandler(product._id)}
-                  >
-                    <i className='fas fa-trash'></i>
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+
+          
+        </>
       )}
     </>
   )

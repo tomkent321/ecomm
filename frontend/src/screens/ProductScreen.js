@@ -67,8 +67,8 @@ const ProductScreen = ({ history, match }) => {
         <Message variant='danger'>{error} </Message>
       ) : (
         <>
-          <Row>
-            <Col>
+          <Row className='product-modal-select sticky-top'>
+            <Col >
               <Link className='btn btn-light my-3' to='/'>
                 Go Back
               </Link>
@@ -94,7 +94,7 @@ const ProductScreen = ({ history, match }) => {
               >
                 Family and Friends Comments
               </Button>
-              
+
               <Button
                 type='button'
                 className='btn btn-light my-3'
