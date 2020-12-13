@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import {PayPalButton} from 'react-paypal-button-v2'
+import { PayPalButton } from 'react-paypal-button-v2'
 import { Link } from 'react-router-dom'
 import * as actionType from '../actions/actionTypes'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
@@ -27,8 +27,8 @@ const OrderScreen = ({ match, history }) => {
   const { loading: loadingPay, success: successPay } = orderPay
   //renamed loading and success above to avoid conflict with already assigned value
 
-  // const orderDeliver = useSelector((state) => state.orderDeliver)
-  // const { loading: loadingDeliver, success: successDeliver } = orderDeliver
+  const orderDeliver = useSelector((state) => state.orderDeliver)
+  const { loading: loadingDeliver, success: successDeliver } = orderDeliver
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
@@ -44,6 +44,7 @@ const OrderScreen = ({ match, history }) => {
     )
   }
 
+  // make sure user is logged in before continuing
   useEffect(() => {
     if (!userInfo) {
       history.push('/login')
@@ -61,8 +62,7 @@ const OrderScreen = ({ match, history }) => {
       document.body.appendChild(script)
     }
 
-    // if (!order || successPay || successDeliver || order._id !== orderId) {
-    if (!order || successPay || order._id !== orderId) {
+    if (!order || successPay || successDeliver || order._id !== orderId) {
       dispatch({ type: actionType.ORDER_PAY_RESET })
       dispatch({ type: actionType.ORDER_DELIVER_RESET })
       dispatch(getOrderDetails(orderId))
@@ -73,8 +73,8 @@ const OrderScreen = ({ match, history }) => {
         setSdkReady(true)
       }
     }
-  // }, [dispatch, orderId, successPay, successDeliver, order])
-  }, [dispatch, orderId, successPay, order])
+    }, [dispatch, orderId, successPay, successDeliver, order, history, userInfo])
+  // }, [dispatch, orderId, successPay, order])
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult)
@@ -85,9 +85,9 @@ const OrderScreen = ({ match, history }) => {
     dispatch(deliverOrder(order))
   }
 
-  const returnToGalleryHandler = () => {
-    history.push('/')
-  }
+  // const returnToGalleryHandler = () => {
+  //   history.push('/')
+  // }
 
   return loading ? (
     <Loader />
@@ -212,7 +212,7 @@ const OrderScreen = ({ match, history }) => {
                   )}
                 </ListGroup.Item>
               )}
-              {/* {loadingDeliver && <Loader />} */}
+              {loadingDeliver && <Loader />}
               {userInfo &&
                 userInfo.isAdmin &&
                 order.isPaid &&

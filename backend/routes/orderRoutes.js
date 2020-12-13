@@ -6,6 +6,7 @@ import {
   updateOrderToPaid,
   getMyOrders,
   getOrders,
+  updateOrderToDelivered
 } from '../controllers/orderController.js'
 import { protect, adminAuth } from '../middleware/authMiddleware.js'
 //shown as the first argument in the get call
@@ -17,5 +18,6 @@ router
 router.route('/myorders').get(protect, getMyOrders)
 router.route('/:id').get(protect, getOrderById)
 router.route('/:id/pay').put(protect, updateOrderToPaid)
+router.route('/:id/deliver').put(protect, adminAuth, updateOrderToDelivered)
 
 export default router

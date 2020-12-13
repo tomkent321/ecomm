@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import * as actionType from '../actions/actionTypes.js'
 import {
   Row,
   Col,
@@ -14,24 +15,50 @@ import {
 // import Rating from '../components/Rating'
 import Loader from '../components/Loader.js'
 import Message from '../components/Message.js'
-import { listProductDetails } from '../actions/productActions.js'
+import {
+  listProductDetails,
+  createProductReview,
+} from '../actions/productActions.js'
+import Rating from '../components/Rating.js'
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1)
+  const [rating, setReviewRating] = useState(5)
+  const [comment, setReviewComment] = useState('')
 
   const dispatch = useDispatch()
 
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
 
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
+  const productReviewCreate = useSelector((state) => state.productReviewCreate)
+  const {
+    success: successProductReview,
+    error: errorProductReview,
+  } = productReviewCreate
+
   useEffect(() => {
+    if (successProductReview) {
+      alert('Thank you! Comments Submitted!')
+      setReviewRating(0)
+      setReviewComment('')
+      dispatch({ type: actionType.PRODUCT_CREATE_REVIEW_RESET })
+    }
+
     dispatch(listProductDetails(match.params.id))
-  }, [dispatch, match])
+  }, [dispatch, match, successProductReview])
 
   const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`)
   }
 
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(createProductReview(match.params.id, { rating, comment }))
+  }
   return (
     <>
       {loading ? (
@@ -58,6 +85,15 @@ const ProductScreen = ({ history, match }) => {
               ) : (
                 ''
               )}
+
+              <Button
+                type='button'
+                className='btn btn-light my-3'
+                data-bs-toggle='modal'
+                data-bs-target='#patronCommentsModal'
+              >
+                Family and Friends Comments
+              </Button>
               <Button
                 type='button'
                 className='btn btn-light my-3'
@@ -95,6 +131,61 @@ const ProductScreen = ({ history, match }) => {
               </Link>
             </Col>
           </Row>
+          {/* <Row>
+            <Col md={8}>
+              <h2>Reviews</h2>
+              {errorProductReview && <Message variant='danger'>{errorProductReview}</Message>}
+              {product.reviews.length === 0 && <Message>No Reviews</Message>}
+              <ListGroup variant='flush'>
+                {product.reviews.map((review) => (
+                  <ListGroup.Item key={review._id}>
+                    <strong>{review.name}</strong>
+                    <Rating value={review.rating} />
+                    <p>{review.createdAt.substring(0, 10)}</p>
+                    <p>{review.comment}</p>
+                  </ListGroup.Item>
+                ))}
+                <ListGroup.Item>
+                  <h2>Write a review</h2>
+                  {userInfo ? (
+                    <Form onSubmit={submitHandler}>
+                      <Form.Group controlId='rating'>
+                        <Form.Label>Rating</Form.Label>
+                        <Form.Control
+                          as='select'
+                          value={rating}
+                          onChange={(e) => setReviewRating(e.target.value)}
+                        >
+                          <option value=''>Select...</option>
+                          <option value='1'>1 - Poor</option>
+                          <option value='2'>2 - Fair</option>
+                          <option value='3'>3 - Average</option>
+                          <option value='4'>4 - Good</option>
+                          <option value='5'>5 - Excellent</option>
+                        </Form.Control>
+                      </Form.Group>
+                      <Form.Group controlId='comment'>
+                        <Form.Label>Your Comments</Form.Label>
+                        <Form.Control
+                          type='text'
+                          placeholder='Write your comments here'
+                          value={comment}
+                          onChange={(e) => setReviewComment(e.target.value)}
+                        ></Form.Control>
+                      </Form.Group>
+                      <Button type='submit' variant='primary'>
+                        Submit your comment to Donna
+                      </Button>
+                    </Form>
+                  ) : (
+                    <Message>
+                      Please <Link to='/login'>Login</Link> to write a review
+                    </Message>
+                  )}
+                </ListGroup.Item>
+              </ListGroup>
+            </Col>
+          </Row> */}
         </>
       )}
 
@@ -119,7 +210,102 @@ const ProductScreen = ({ history, match }) => {
                 aria-label='Close'
               ></button>
             </div>
-            <div className='modal-body artistComments'>{product.artist_comments}</div>
+            <div className='modal-body artistComments'>
+              {product.artist_comments && product.artist_comments}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* modal: patron comments */}
+      <div
+        className='modal fade'
+        id='patronCommentsModal'
+        tabindex='-1'
+        aria-labelledby='patronCommentsModalLabel'
+        aria-hidden='true'
+      >
+        <div className='modal-dialog  modal-dialog-centered modal-lg modal-dialog-scrollable'>
+          <div className='modal-content'>
+            <div className='modal-header'>
+              <h5 className='modal-title' id='patronCommentsModalLabel'>
+                Family and Friends Comments
+              </h5>
+              <button
+                type='button'
+                className='btn-close'
+                data-bs-dismiss='modal'
+                aria-label='Close'
+              ></button>
+            </div>
+            <div className='modal-body'>
+              <Card border='light'>
+                <Card.Body>
+                  {errorProductReview && (
+                    <Message variant='success'>{errorProductReview}</Message>
+                  )}
+                  {product.reviews.length === 0 && (
+                    <Message>No Reviews</Message>
+                  )}
+                  <ListGroup variant='flush'>
+                    {product.reviews.map((review) => (
+                      <ListGroup.Item key={review._id}>
+                        
+                          
+                            <strong>{review.name}</strong>
+                            {/* <Rating value={review.rating} /> */}
+                            <p>{review.createdAt.substring(0, 10)}</p>
+                          
+                        
+
+                        <p>{review.comment}</p>
+                      </ListGroup.Item>
+                    ))}
+                    <ListGroup.Item>
+                      <h5>Share your comments with Donna</h5>
+                      {userInfo ? (
+                        <Form onSubmit={submitHandler}>
+                          {/* <Form.Group controlId='rating'>
+                            <Form.Label>Rating</Form.Label>
+                            <Form.Control
+                              as='select'
+                              value={rating}
+                              onChange={(e) => setReviewRating(e.target.value)}
+                            >
+                              <option value=''>Select...</option>
+                              <option value='1'>1 - Poor</option>
+                              <option value='2'>2 - Fair</option>
+                              <option value='3'>3 - Average</option>
+                              <option value='4'>4 - Good</option>
+                              <option value='5'>5 - Excellent</option>
+                            </Form.Control>
+                          </Form.Group> */}
+                          <Form.Group controlId='comment'>
+                            <Form.Label>Your Comments:</Form.Label>
+                            <Form.Control
+                              type='text'
+                              placeholder='Write your comments here'
+                              value={comment}
+                              onChange={(e) => setReviewComment(e.target.value)}
+                            ></Form.Control>
+                          </Form.Group>
+                          <div className='modal-footer'>
+                          <Button type='submit' variant='primary'>
+                            Submit your comments
+                          </Button>
+                          </div>
+                        </Form>
+                      ) : (
+                        <Message>
+                          Please <Link to='/login'>Login</Link> to write a
+                          review
+                        </Message>
+                      )}
+                    </ListGroup.Item>
+                  </ListGroup>
+                </Card.Body>
+              </Card>
+            </div>
           </div>
         </div>
       </div>

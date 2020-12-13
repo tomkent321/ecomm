@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Container, Button, Row, Col } from 'react-bootstrap'
+import {  Button} from 'react-bootstrap'
 
 const AboutArtistScreen = () => {
   return (
