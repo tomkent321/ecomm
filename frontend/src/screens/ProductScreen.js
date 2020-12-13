@@ -94,6 +94,7 @@ const ProductScreen = ({ history, match }) => {
               >
                 Family and Friends Comments
               </Button>
+              
               <Button
                 type='button'
                 className='btn btn-light my-3'
@@ -245,24 +246,26 @@ const ProductScreen = ({ history, match }) => {
                     <Message variant='success'>{errorProductReview}</Message>
                   )}
                   {product.reviews.length === 0 && (
-                    <Message>No Reviews</Message>
+                    <Message>No comments yet. Be the first to comment!</Message>
                   )}
                   <ListGroup variant='flush'>
                     {product.reviews.map((review) => (
                       <ListGroup.Item key={review._id}>
-                        
-                          
-                            <strong>{review.name}</strong>
-                            {/* <Rating value={review.rating} /> */}
-                            <p>{review.createdAt.substring(0, 10)}</p>
-                          
-                        
+                        <div className='reviewerName'>
+                          <strong>{review.name}</strong>
+                        </div>
+                        {/* <Rating value={review.rating} /> */}
+                        <div className='reviwerDate'>
+                          {review.createdAt.substring(0, 10)}{' '}
+                        </div>
 
-                        <p>{review.comment}</p>
+                        <div className='reviewerComments'>{review.comment}</div>
                       </ListGroup.Item>
                     ))}
                     <ListGroup.Item>
-                      <h5>Share your comments with Donna</h5>
+                      <div className='reviewFormTitle'>
+                        Share your comments with Donna
+                      </div>
                       {userInfo ? (
                         <Form onSubmit={submitHandler}>
                           {/* <Form.Group controlId='rating'>
@@ -281,7 +284,9 @@ const ProductScreen = ({ history, match }) => {
                             </Form.Control>
                           </Form.Group> */}
                           <Form.Group controlId='comment'>
-                            <Form.Label>Your Comments:</Form.Label>
+                            <Form.Label style={{ fontSize: '.5rem' }}>
+                              Your Comments:
+                            </Form.Label>
                             <Form.Control
                               type='text'
                               placeholder='Write your comments here'
@@ -290,16 +295,13 @@ const ProductScreen = ({ history, match }) => {
                             ></Form.Control>
                           </Form.Group>
                           <div className='modal-footer'>
-                          <Button type='submit' variant='primary'>
-                            Submit your comments
-                          </Button>
+                            <Button type='submit' variant='primary'>
+                              Submit your comments
+                            </Button>
                           </div>
                         </Form>
                       ) : (
-                        <Message>
-                          Please <Link to='/login'>Login</Link> to write a
-                          review
-                        </Message>
+                        <Message>Please Sign In to write a review</Message>
                       )}
                     </ListGroup.Item>
                   </ListGroup>
