@@ -67,60 +67,64 @@ const ProductScreen = ({ history, match }) => {
         <Message variant='danger'>{error} </Message>
       ) : (
         <>
-          <Row className='product-modal-select sticky-top'>
-            <Col >
-              <Link className='btn btn-light my-3' to='/'>
-                Go Back
-              </Link>
-
-              {product.artist_comments !== ' ' ? (
-                <Button
-                  type='button'
-                  className='btn btn-light my-3'
-                  data-bs-toggle='modal'
-                  data-bs-target='#artistCommentsModal'
-                >
-                  Donna's comments
-                </Button>
-              ) : (
-                ''
-              )}
-
-              <Button
-                type='button'
-                className='btn btn-light my-3'
-                data-bs-toggle='modal'
-                data-bs-target='#patronCommentsModal'
-              >
-                Family and Friends Comments
-              </Button>
-
-              <Button
-                type='button'
-                className='btn btn-light my-3'
-                data-bs-toggle='modal'
-                data-bs-target='#pictureInfoModal'
-              >
-                Painting Information
-              </Button>
-
-              {product.price === 0 ? (
-                ''
-              ) : (
-                <Button
-                  type='button'
-                  className='btn btn-light my-3'
-                  data-bs-toggle='modal'
-                  data-bs-target='#purchaseInformationModal'
-                >
-                  Purchase Information
-                </Button>
-              )}
-            </Col>
-          </Row>
-
           <Row>
-            <Col md={12}>
+            <Col md={2}>
+              <p className='return-to-gallery'>Click picture to return</p>
+              <nav className='nav flex-column'>
+                {product.artist_comments !== ' ' ? (
+                  <Button
+                    type='button'
+                    className='btn btn-light my-3'
+                    data-bs-toggle='modal'
+                    data-bs-target='#artistCommentsModal'
+                  >
+                    Donna's comments
+                  </Button>
+                ) : (
+                  <Button
+                    type='button'
+                    style={{ 'visibility': 'hidden' }}
+                    className='btn btn-light my-3'
+                    data-bs-toggle='modal'
+                    data-bs-target='#artistCommentsModal'
+                  >
+                    Donna's comments
+                  </Button>
+                )}
+
+                <Button
+                  type='button'
+                  className='btn btn-light my-3'
+                  data-bs-toggle='modal'
+                  data-bs-target='#patronCommentsModal'
+                >
+                  Family and Friends Comments
+                </Button>
+
+                <Button
+                  type='button'
+                  className='btn btn-light my-3'
+                  data-bs-toggle='modal'
+                  data-bs-target='#pictureInfoModal'
+                >
+                  Painting Information
+                </Button>
+
+                {product.price === 0 ? (
+                  ''
+                ) : (
+                  <Button
+                    type='button'
+                    className='btn btn-light my-3'
+                    data-bs-toggle='modal'
+                    data-bs-target='#purchaseInformationModal'
+                  >
+                    Purchase Information
+                  </Button>
+                )}
+              </nav>
+            </Col>
+            <Col md={10}>
               <Link to='/'>
                 <Image
                   src={product.image}
@@ -132,6 +136,8 @@ const ProductScreen = ({ history, match }) => {
               </Link>
             </Col>
           </Row>
+
+          {/* Following code if you want to include a rating component */}
           {/* <Row>
             <Col md={8}>
               <h2>Reviews</h2>
