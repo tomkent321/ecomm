@@ -68,13 +68,13 @@ const ProductScreen = ({ history, match }) => {
       ) : (
         <>
           <Row>
-            <Col md={2}>
+            <Col md={3}>
               <p className='return-to-gallery'>Click picture to return</p>
-              <nav className='nav flex-column'>
+              <nav className='nav flex-sm-column'>
                 {product.artist_comments !== ' ' ? (
                   <Button
                     type='button'
-                    className='btn btn-light my-3'
+                    className='btn btn-light my-0 modal-button-text'
                     data-bs-toggle='modal'
                     data-bs-target='#artistCommentsModal'
                   >
@@ -83,8 +83,8 @@ const ProductScreen = ({ history, match }) => {
                 ) : (
                   <Button
                     type='button'
-                    style={{ 'visibility': 'hidden' }}
-                    className='btn btn-light my-3'
+                    style={{ visibility: 'hidden' }}
+                    className='btn btn-light my-0 modal-button-text'
                     data-bs-toggle='modal'
                     data-bs-target='#artistCommentsModal'
                   >
@@ -94,7 +94,7 @@ const ProductScreen = ({ history, match }) => {
 
                 <Button
                   type='button'
-                  className='btn btn-light my-3'
+                  className='btn btn-light my-0 modal-button-text'
                   data-bs-toggle='modal'
                   data-bs-target='#patronCommentsModal'
                 >
@@ -103,7 +103,7 @@ const ProductScreen = ({ history, match }) => {
 
                 <Button
                   type='button'
-                  className='btn btn-light my-3'
+                  className='btn btn-light my-0 modal-button-text'
                   data-bs-toggle='modal'
                   data-bs-target='#pictureInfoModal'
                 >
@@ -115,7 +115,7 @@ const ProductScreen = ({ history, match }) => {
                 ) : (
                   <Button
                     type='button'
-                    className='btn btn-light my-3'
+                    className='btn btn-light my-0 modal-button-text'
                     data-bs-toggle='modal'
                     data-bs-target='#purchaseInformationModal'
                   >
@@ -124,7 +124,7 @@ const ProductScreen = ({ history, match }) => {
                 )}
               </nav>
             </Col>
-            <Col md={10}>
+            <Col md={9}>
               <Link to='/'>
                 <Image
                   src={product.image}
