@@ -21,7 +21,7 @@ const SearchBox = ({ history }) => {
           className='form-control'
           onChange={(e) => setKeyword(e.target.value)}
           name='q'
-          placeholder='Search Paintings'
+          placeholder='Search Titles'
           aria-label='Search Paintings'
           aria-describedby='button-addon2'
         />

@@ -1,18 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
 import Rating from './Rating'
 
 const Product = ({ product }) => {
+  useEffect(() => {
+    const handleScrollPosition = () => {
+      const scrollPosition = sessionStorage.getItem('scrollPosition')
+      if (scrollPosition) {
+        window.scrollTo(0, parseInt(scrollPosition))
+        sessionStorage.removeItem('scrollPosition')
+      }
+    }
+    handleScrollPosition()
+  }, [])
+
+  // store position in sessionStorage
+  const handleClick = (e) => {
+    sessionStorage.setItem('scrollPosition', window.pageYOffset)
+  }
+
   return (
     <Card className=' p-2 text-center rounded h-50' style={{ border: 'none' }}>
-      <Link to={`/product/${product._id}`}>
-        {/* <Card.Img src={product.image} variant='top' /> */}
+      <Link to={`/product/${product._id}`} onClick={handleClick}>
+        
         <Card.Img src={product.image} />
       </Link>
 
       <Card.Body>
-        <Link to={`/product/${product._id}`}>
+        <Link to={`/product/${product._id}`} onClick={handleClick}>
           <Card.Title as='div'>
             <strong>
               <h5>{product.name}</h5>

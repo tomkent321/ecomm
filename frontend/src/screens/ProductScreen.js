@@ -69,7 +69,10 @@ const ProductScreen = ({ history, match }) => {
         <>
           <Row>
             <Col md={3}>
-              <p className='return-to-gallery'>Click picture to return</p>
+              <p className='return-to-gallery'>
+                Click picture to return to the same spot in the gallery. Click
+                "Donna Hurd" above to go to the top of the current gallery
+              </p>
               <nav className='nav flex-sm-column'>
                 {product.artist_comments !== ' ' ? (
                   <Button

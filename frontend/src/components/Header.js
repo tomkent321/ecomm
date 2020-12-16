@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
@@ -23,14 +23,24 @@ const Header = () => {
     dispatch(userChangeSortOption(selectedKey))
   }
 
+  const handleScrollPosition = () => {
+    const scrollPosition = sessionStorage.getItem('scrollPosition')
+    if (scrollPosition) {
+      window.scrollTo(0, 0)
+      sessionStorage.removeItem('scrollPosition')
+    } else {
+      window.scrollTo(0, 0)
+    }
+  }
+
   return (
     <header className='sticky-top'>
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
-          <LinkContainer to='/'>
+          <LinkContainer to='/' onClick={() => handleScrollPosition()}>
             <Navbar.Brand>
               Donna Hurd Fine Art Studio
-              <h6 className='clickHere'>click for Gallery</h6>
+              <h6 className='clickHere'>click here for TOP of Gallery</h6>
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -70,23 +80,24 @@ const Header = () => {
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item eventKey='scenery'>
-                  See Only Scenery
+                  Show Only Scenery
                 </NavDropdown.Item>
                 <NavDropdown.Item eventKey='southwestern'>
-                  See Only Southwestern
+                  Show Only Southwestern
                 </NavDropdown.Item>
                 <NavDropdown.Item eventKey='still_life'>
-                  See Only Still Life
+                  Show Only Still Life
                 </NavDropdown.Item>
                 <NavDropdown.Item eventKey='people'>
-                  See Only People
+                  Show Only People
                 </NavDropdown.Item>
-                <NavDropdown.Item eventKey='all'>
-                  See Everything
+                <NavDropdown.Divider />
+                <NavDropdown.Item eventKey='all' style={{ fontWeight: 'bold' }}>
+                  Show Everything
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item eventKey='for_sale'>
-                  See Paintings for Sale
+                  Show Paintings for Sale
                 </NavDropdown.Item>
               </NavDropdown>
 
