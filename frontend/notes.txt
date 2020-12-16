@@ -99,3 +99,87 @@ Lecture on buidling the login HomeScreen:
 
 
 
+$.cookie("previousUrl", window.location.href, {path:"/"});   to get previous url
+
+https://stackoverflow.com/questions/53158796/get-scroll-position-with-reactjs
+
+You have to store the scroll position in state on click of post with the use of window.pageYOffset
+
+this.setState({
+    scrollPosition: window.pageYOffset
+});
+And once you click on back button at that time you have to set the window position in the method of componentDidMount.
+
+window.scrollTo(0, this.state.scrollPosition);
+By default you can set the value of scrollPosition is 0.
+
+Updated
+
+Here I have used the sessionStorage to maintain the scroll position for demo purpose. You can also use the context API or redux store to manage it.
+
+Here is the working demo for you. https://stackblitz.com/edit/react-fystht
+
+import React from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+
+class Posts extends React.Component {
+  state = { posts: [] };
+
+
+
+  import React from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+
+class Posts extends React.Component {
+  state = { posts: [] };
+
+  componentDidMount() {
+    axios.get("https://jsonplaceholder.typicode.com/posts").then(res => {
+      this.setState({ posts: res.data.slice(0, 20) }, () => {
+        this.handleScrollPosition();
+      });
+    });
+  }
+
+  // handle scroll position after content load
+  handleScrollPosition = () => {
+    const scrollPosition = sessionStorage.getItem("scrollPosition");
+    if (scrollPosition) {
+      window.scrollTo(0, parseInt(scrollPosition));
+      sessionStorage.removeItem("scrollPosition");
+    }
+  };
+
+  // store position in sessionStorage
+  handleClick = e => {
+    sessionStorage.setItem("scrollPosition", window.pageYOffset);
+  };
+
+  render() {
+    const { posts } = this.state;
+
+    const postsList = posts.length ? (
+      posts.map(post => {
+        return (
+          <div className="card" key={post.id}>
+            <div className="card-body">
+              <Link to={"/view/" + post.id} onClick={this.handleClick}>
+                <h5 className="card-title">{post.title}</h5>
+              </Link>
+              <p className="card-text">{post.body}</p>
+            </div>
+          </div>
+        );
+      })
+    ) : (
+      <div className="text-danger text-center">No Posts yet...</div>
+    );
+
+    return <div>{postsList}</div>;
+  }
+}
+
+export default Posts;
+
