@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import dayjs from 'dayjs'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -48,18 +49,20 @@ const OrderListScreen = ({ history }) => {
               <tr key={order._id}>
                 <td>{order._id}</td>
                 <td>{order.user && order.user.name}</td>
-                <td>{order.createdAt.substring(0, 10)}</td>
+                {/* <td>{order.createdAt.substring(0, 10)}</td> */}
+                <td>{dayjs(order.createdAt).format('MMM D, YYYY')}</td>
                 <td>{order.totalPrice.toFixed(2)}</td>
                 <td>
                   {order.isPaid ? (
-                    order.paidAt.substring(0, 10)
+                    dayjs(order.paidAt).format('MMM D, YYYY')
                   ) : (
                     <i className='fas fa-times' style={{ color: 'red' }}></i>
                   )}
                 </td>
                 <td>
                   {order.isDelivered ? (
-                    order.deliveredAt.substring(0, 10)
+                    // order.deliveredAt.substring(0, 10)
+                    dayjs(order.deliveredAt).format('MMM D, YYYY')
                   ) : (
                     <i className='fas fa-times' style={{ color: 'red' }}></i>
                   )}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import dayjs from 'dayjs'
 import axios from 'axios'
 import { PayPalButton } from 'react-paypal-button-v2'
 import { Link } from 'react-router-dom'
@@ -73,7 +74,7 @@ const OrderScreen = ({ match, history }) => {
         setSdkReady(true)
       }
     }
-    }, [dispatch, orderId, successPay, successDeliver, order, history, userInfo])
+  }, [dispatch, orderId, successPay, successDeliver, order, history, userInfo])
   // }, [dispatch, orderId, successPay, order])
 
   const successPaymentHandler = (paymentResult) => {
@@ -116,7 +117,8 @@ const OrderScreen = ({ match, history }) => {
               </p>
               {order.isDelivered ? (
                 <Message variant='success'>
-                  Delivered on {order.deliveredAt}
+                  Delivered on{' '}
+                  {dayjs(order.deliveredAt).format('MMMM D, YYYY h:mm A')}
                 </Message>
               ) : (
                 <Message variant='danger'>Not Delivered</Message>
@@ -130,7 +132,9 @@ const OrderScreen = ({ match, history }) => {
                 {order.paymentMethod}
               </p>
               {order.isPaid ? (
-                <Message variant='success'>Paid on {order.paidAt}</Message>
+                <Message variant='success'>
+                  Paid on {dayjs(order.paidAt).format('MMMM D, YYYY h:mm A')}
+                </Message>
               ) : (
                 <Message variant='danger'>Not Paid</Message>
               )}

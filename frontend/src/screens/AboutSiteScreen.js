@@ -76,9 +76,9 @@ const AboutSiteScreen = () => {
                     then to pastels and then to acrylics.
                   </p>
                   <p>
-                    Use the “Show only…” options to see only scenery,
-                    southwestern themes, still life or people. Select “Show
-                    Everything” to reset the gallery to show everything.
+                    Use the “Show only…” options to see only scenery, only
+                    southwestern themes, only still life or only people. Select
+                    “Show Everything” to reset the gallery to show everything.
                   </p>
 
                   <p>
@@ -214,7 +214,7 @@ const AboutSiteScreen = () => {
                     Building this site has been a labor of love. I hope that
                     friends and family can enjoy mom’s pictures and interact and
                     appreciate her with lots of comments. If you have specific
-                    questions about the site, please contact me at  
+                    questions about the site, please contact me at
                     tomkent321@yahoo.com.
                   </p>
                 </div>

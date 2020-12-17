@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import dayjs from 'dayjs'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import * as actionType from '../actions/actionTypes.js'
@@ -265,7 +266,8 @@ const ProductScreen = ({ history, match }) => {
                         </div>
                         {/* <Rating value={review.rating} /> */}
                         <div className='reviwerDate'>
-                          {review.createdAt.substring(0, 10)}{' '}
+                          {/* {review.createdAt.substring(0, 10)}{' '} */}
+                          {dayjs(review.createdAt).format('MMMM D, YYYY')}{' '}
                         </div>
 
                         <div className='reviewerComments'>{review.comment}</div>

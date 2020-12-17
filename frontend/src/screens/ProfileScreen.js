@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import dayjs from 'dayjs'
 import { Form, Button, Row, Col, Table } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -128,18 +129,19 @@ const ProfileScreen = ({ location, history }) => {
               {orders.map((order) => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
-                  <td>{order.createdAt.substring(0, 10)}</td>
+                  {/* <td>{order.createdAt.substring(0, 10)}</td> */}
+                  <td>{dayjs(order.createdAt).format('MMM D, YYYY')}</td>
                   <td>${order.totalPrice}</td>
                   <td>
                     {order.isPaid ? (
-                      order.paidAt.substring(0, 10)
+                      dayjs(order.paidAt).format('MMM D, YYYY')
                     ) : (
                       <i className='fas fa-times' style={{ color: 'red' }}></i>
                     )}
                   </td>
                   <td>
                     {order.isDelivered ? (
-                      order.deliveredAt.substring(0, 10)
+                      dayjs(order.deliveredAt).format('MMM D, YYYY')
                     ) : (
                       <i className='fas fa-times' style={{ color: 'red' }}></i>
                     )}
