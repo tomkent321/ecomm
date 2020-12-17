@@ -20,7 +20,7 @@ import {
   listProductDetails,
   createProductReview,
 } from '../actions/productActions.js'
-import Rating from '../components/Rating.js'
+// import Rating from '../components/Rating.js'
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1)
@@ -204,7 +204,7 @@ const ProductScreen = ({ history, match }) => {
       <div
         className='modal fade'
         id='artistCommentsModal'
-        tabindex='-1'
+        tabIndex='-1'
         aria-labelledby='artistCommentsModalLabel'
         aria-hidden='true'
       >
@@ -232,7 +232,7 @@ const ProductScreen = ({ history, match }) => {
       <div
         className='modal fade'
         id='patronCommentsModal'
-        tabindex='-1'
+        tabIndex='-1'
         aria-labelledby='patronCommentsModalLabel'
         aria-hidden='true'
       >
@@ -327,7 +327,7 @@ const ProductScreen = ({ history, match }) => {
       <div
         className='modal fade'
         id='pictureInfoModal'
-        tabindex='-1'
+        tabIndex='-1'
         aria-labelledby='pictureInfoModalLabel'
         aria-hidden='true'
       >
@@ -378,7 +378,7 @@ const ProductScreen = ({ history, match }) => {
       <div
         className='modal fade'
         id='purchaseInformationModal'
-        tabindex='-1'
+        tabIndex='-1'
         aria-labelledby='purchaseInformationModalLabel'
         aria-hidden='true'
       >

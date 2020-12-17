@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
-import Rating from './Rating'
+// import Rating from './Rating'
 
 const Product = ({ product }) => {
   useEffect(() => {
@@ -23,7 +23,6 @@ const Product = ({ product }) => {
   return (
     <Card className=' p-2 text-center rounded h-50' style={{ border: 'none' }}>
       <Link to={`/product/${product._id}`} onClick={handleClick}>
-        
         <Card.Img src={product.image} />
       </Link>
 
@@ -48,11 +47,11 @@ const Product = ({ product }) => {
         <Card.Text as='h6' className='py-2'>
           {product.year}
         </Card.Text>
-        <Card.Text className='otherInfo'>
+        <Card.Text as='h6' className='otherInfo'>
           {product.price > 0 ? (
-            <h6 className='visible'>${product.price.toFixed(2)}</h6>
+            <p className='visible'>${product.price.toFixed(2)}</p>
           ) : (
-            <h6 className='invisible'>${product.price.toFixed(2)}</h6>
+            <p className='invisible'>${product.price.toFixed(2)}</p>
           )}
         </Card.Text>
       </Card.Body>

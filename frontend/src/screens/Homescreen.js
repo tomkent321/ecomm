@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, Pagination } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product.js'
 import Loader from '../components/Loader.js'
 import Message from '../components/Message.js'
@@ -87,8 +87,8 @@ const HomeScreen = ({ match }) => {
         currentDisplay = 'There are no paintings for sale at this time.'
       } else {
         currentDisplay = 'Showing only Paintings for Sale'
-        break
       }
+      break
 
     case 'all':
       products.sort(function (x, y) {
