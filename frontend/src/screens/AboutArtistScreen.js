@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Button} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 const AboutArtistScreen = () => {
   return (
@@ -11,7 +11,7 @@ const AboutArtistScreen = () => {
               <h1>About the Artist</h1>
               <p style={{ color: 'black' }}>
                 Understanding the person behind the paintings will help you to
-                understand the pantings.
+                understand the paintings.
               </p>
             </div>
           </div>

@@ -212,10 +212,10 @@ const AboutSiteScreen = () => {
                 <div className='col-md-10' style={{ marginTop: '1.5rem' }}>
                   <p>
                     Building this site has been a labor of love. I hope that
-                    friends and family can enjoy mom’s pictures and interact and
-                    appreciate her with lots of comments. If you have specific
-                    questions about the site, please contact me at
-                    tomkent321@yahoo.com.
+                    friends and family can enjoy mom’s pictures and interact
+                    with and appreciate her artistic talent with lots of
+                    comments. If you have specific questions about the site,
+                    please contact me at tomkent321@yahoo.com.
                   </p>
                 </div>
               </div>

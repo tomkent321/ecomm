@@ -75,7 +75,7 @@ const ProductScreen = ({ history, match }) => {
                 "Donna Hurd" above to go to the top of the current gallery
               </p>
               <nav className='nav flex-sm-column'>
-                {product.artist_comments !== ' ' ? (
+                {product.artist_comments !== '' ? (
                   <Button
                     type='button'
                     className='btn btn-light my-0 modal-button-text'
