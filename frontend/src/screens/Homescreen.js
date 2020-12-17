@@ -83,8 +83,12 @@ const HomeScreen = ({ match }) => {
       productsFiltered = products.filter(function (x) {
         return x.price > 0 ?? x.qty > 0
       })
-      currentDisplay = 'Showing only Paintings for Sale'
-      break
+      if (productsFiltered.length === 0) {
+        currentDisplay = 'There are no paintings for sale at this time.'
+      } else {
+        currentDisplay = 'Showing only Paintings for Sale'
+        break
+      }
 
     case 'all':
       products.sort(function (x, y) {
