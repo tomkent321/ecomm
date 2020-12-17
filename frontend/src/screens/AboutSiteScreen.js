@@ -116,7 +116,7 @@ const AboutSiteScreen = () => {
                 </div>
                 <div className='col-md-4'>
                   <img
-                    src='/images/searchbar.jpg'
+                    src='/images/Searchbar.jpg'
                     alt='sort options'
                     className='img-fluid mt-3'
                   />
@@ -172,9 +172,15 @@ const AboutSiteScreen = () => {
                     available for give away if you would like to display them.
                     If, so, that will show here. Please note that I (“Little
                     Tom”) will handle all the details with my mom and dad, so
-                    please contact me at <a style={{'color': 'blue'}} href='mailto:tomkent321@yahoo.com'>tomkent321@yahoo.com</a> and let me know if
-                    you are interested and I will work with my mom and dad to
-                    get it sent or delivered.{' '}
+                    please contact me at{' '}
+                    <a
+                      style={{ color: 'blue' }}
+                      href='mailto:tomkent321@yahoo.com'
+                    >
+                      tomkent321@yahoo.com
+                    </a>{' '}
+                    and let me know if you are interested and I will work with
+                    my mom and dad to get it sent or delivered.{' '}
                   </p>
                 </div>
                 <div className='col-md-5'>
@@ -216,7 +222,12 @@ const AboutSiteScreen = () => {
                     with and appreciate her artistic talent with lots of
                     comments. If you have specific questions about the site,
                     please contact me at{' '}
-                    <a style={{'color': 'blue'}} href='mailto:tomkent321@yahoo.com'>tomkent321@yahoo.com</a>
+                    <a
+                      style={{ color: 'blue' }}
+                      href='mailto:tomkent321@yahoo.com'
+                    >
+                      tomkent321@yahoo.com
+                    </a>
                   </p>
                 </div>
               </div>
