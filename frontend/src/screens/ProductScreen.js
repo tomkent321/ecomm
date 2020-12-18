@@ -102,7 +102,7 @@ const ProductScreen = ({ history, match }) => {
                   data-bs-toggle='modal'
                   data-bs-target='#patronCommentsModal'
                 >
-                  Family and Friends Comments
+                  Family and Friends Comments ({product.numReviews})
                 </Button>
 
                 <Button
@@ -240,7 +240,7 @@ const ProductScreen = ({ history, match }) => {
           <div className='modal-content'>
             <div className='modal-header'>
               <h5 className='modal-title' id='patronCommentsModalLabel'>
-                Family and Friends Comments
+                Family and Friends Comments 
               </h5>
               <button
                 type='button'

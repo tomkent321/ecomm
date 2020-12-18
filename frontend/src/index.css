@@ -135,5 +135,9 @@ h3 {
   /* position: absolute; */
   top: 1rem;
   margin-bottom: 1rem;
-  font-size: .6rem;
+  font-size: 0.6rem;
+}
+
+.comment-text {
+  font-size: 0.5rem;
 }

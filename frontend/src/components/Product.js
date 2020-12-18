@@ -47,6 +47,10 @@ const Product = ({ product }) => {
         <Card.Text as='h6' className='py-2'>
           {product.year}
         </Card.Text>
+        <Card.Text as='h6' className='comment-text'>
+          comments: {product.numReviews}
+        </Card.Text>
+
         <Card.Text as='h6' className='otherInfo'>
           {product.price > 0 ? (
             <p className='visible'>${product.price.toFixed(2)}</p>
