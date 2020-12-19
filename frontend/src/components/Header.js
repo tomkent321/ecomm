@@ -56,12 +56,13 @@ const Header = () => {
                 id='basic-nav-dropdown'
                 onSelect={(selectedKey) => aboutHandler(selectedKey)}
               >
-                <NavDropdown.Item href='/about/artist'>
-                  About the Artist
-                </NavDropdown.Item>
-                <NavDropdown.Item href='/about/site'>
-                  About the Site
-                </NavDropdown.Item>
+                <LinkContainer to='/about/artist'>
+                  <NavDropdown.Item>About the Artist</NavDropdown.Item>
+                </LinkContainer>
+
+                <LinkContainer to='/about/site'>
+                  <NavDropdown.Item>About the Site</NavDropdown.Item>
+                </LinkContainer>
               </NavDropdown>
 
               <NavDropdown
