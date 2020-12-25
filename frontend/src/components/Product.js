@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Card } from 'react-bootstrap'
+import { Row, Card } from 'react-bootstrap'
 // import Rating from './Rating'
 
 const Product = ({ product }) => {
@@ -29,9 +29,15 @@ const Product = ({ product }) => {
       <Card.Body>
         <Link to={`/product/${product._id}`} onClick={handleClick}>
           <Card.Title as='div'>
-            <strong>
-              <h5>{product.name}</h5>
-            </strong>
+            {product.artist_comments.length > 0 ? (
+              <strong>
+                <h5>{product.name} *</h5>
+              </strong>
+            ) : (
+              <strong>
+                <h5>{product.name}</h5>
+              </strong>
+            )}
           </Card.Title>
         </Link>
         <Card.Subtitle className='mb-2 text-muted'>

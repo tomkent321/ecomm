@@ -119,6 +119,9 @@ const HomeScreen = ({ match }) => {
       <Row className='homescreen-header'>
         <h5>Gallery ({currentDisplay})</h5>
         <h6>Click any picture for details</h6>
+        <h6 style={{ fontSize: '.5rem' }}>
+          Picture Titles with an * denotes artist has commented
+        </h6>
       </Row>
       {loading ? (
         <Loader />
